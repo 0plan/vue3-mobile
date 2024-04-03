@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import '~/styles/base.scss'
-import '~/styles/common.scss'
-
 useHead({
   title: 'LG U+ Mobile 데이터팜',
   meta: [
@@ -18,7 +15,7 @@ useHead({
     {
       rel: 'icon',
       type: 'image/svg+xml',
-      href: () => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
+      href: () => preferredDark.value ? `${import.meta.env.BASE_URL}/favicon-dark.svg` : `${import.meta.env.BASE_URL}/favicon.svg`,
     },
   ],
 })

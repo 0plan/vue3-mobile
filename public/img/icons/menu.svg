@@ -2,4 +2,7 @@
   <path d="M21 6L3 6" stroke="black" stroke-width="2" stroke-linecap="round"/>
   <path d="M21 12L3 12" stroke="black" stroke-width="2" stroke-linecap="round"/>
   <path d="M21 18L3 18" stroke="black" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="16" cy="18" r="1.5" fill="white" stroke="black"/>
+  <circle cx="16" cy="6" r="1.5" fill="white" stroke="black"/>
+  <circle cx="8" cy="12" r="1.5" fill="white" stroke="black"/>
 </svg>

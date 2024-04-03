@@ -6,6 +6,12 @@ import { routes } from 'vue-router/auto/routes'
 import App from './App.vue'
 import type { UserModule } from './type'
 
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
+
 import 'uno.css'
 
 export const createApp = ViteSSG(

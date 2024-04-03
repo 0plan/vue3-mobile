@@ -15,6 +15,7 @@ import Shiki from 'markdown-it-shikiji'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   base: '/app/',
@@ -86,6 +87,7 @@ export default defineConfig({
         'src/stores',
       ],
       vueTemplate: true,
+      resolvers: [ElementPlusResolver()],
     }),
 
     // https://github.com/antfu/unplugin-vue-components
@@ -95,6 +97,7 @@ export default defineConfig({
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
+      resolvers: [ElementPlusResolver()],
     }),
 
     // https://github.com/antfu/unocss
@@ -173,7 +176,7 @@ export default defineConfig({
       scss: {
         additionalData: `
         @import "./src/styles/_variables.scss";
-        @import "./src/styles/_mixins.scss";
+        // @import "./src/styles/_mixins.scss";
       `,
       },
     },
