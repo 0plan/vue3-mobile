@@ -1,8 +1,9 @@
 <template>
   <main
-    px-4 py-10
-    text="center gray-700 dark:gray-200"
+    h-screen w-full flex flex-col items-center
   >
-    <RouterView />
+    <div max-w-4xl min-w-xs>
+      <RouterView />
+    </div>
   </main>
 </template>

@@ -9,11 +9,15 @@ const movePage = () => {
 </script>
 
 <template>
-  <div>
-    <p>테스트중</p>
-    <button @click="movePage">
-      Main 화면 이동
-    </button>
+  <div text-center>
+    <p text-xl>
+      테스트중
+    </p>
+    <div m-2>
+      <el-button @click="movePage">
+        Main 화면 이동
+      </el-button>
+    </div>
   </div>
 </template>
 
