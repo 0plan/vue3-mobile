@@ -5,10 +5,10 @@ console.log(user)
 </script>
 
 <template>
-  <div class="px-20px pt-104px">
-    <p>{{ user }}</p>
-    <p>Network 상태 : {{ isOnline ? 'Online' : 'Offline' }}</p>
-  </div>
+  <article>
+    <p>user-agent: {{ user }}</p>
+    <p>Network 상태: {{ isOnline ? 'Online' : 'Offline' }}</p>
+  </article>
 </template>
 
 <route lang="yaml">

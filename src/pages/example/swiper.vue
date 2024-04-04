@@ -8,7 +8,7 @@ console.log(route)
 </script>
 
 <template>
-  <div class="mt-36">
+  <div>
     <Swiper
       :slides-per-view="3" :free-mode="true" :space-between="20" :modules="moduls" style="height:100px; line-height: 100px; align-items: center; text-align: center; border: solid"
     >

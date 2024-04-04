@@ -22,5 +22,9 @@ useHead({
 </script>
 
 <template>
-  <RouterView />
+  <main h-screen w-full flex flex-col items-center>
+    <div max-w-4xl min-w-xs w-full>
+      <RouterView />
+    </div>
+  </main>
 </template>
