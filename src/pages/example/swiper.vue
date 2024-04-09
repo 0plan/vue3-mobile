@@ -10,7 +10,7 @@ console.log(route)
 <template>
   <div>
     <Swiper
-      :slides-per-view="3" :free-mode="true" :space-between="20" :modules="moduls" style="height:100px; line-height: 100px; align-items: center; text-align: center; border: solid"
+      :slides-per-view="3" :free-mode="true" :space-between="20" :modules="moduls" style="height: 48px; line-height: 48px; align-items: center; text-align: center; border: solid"
     >
       <SwiperSlide>
         test1
