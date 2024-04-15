@@ -12,12 +12,11 @@ const routes: IRoutes[] = [
   { title: 'Drawer', name: '/example/drawer' },
   { title: 'Popup', name: '/example/swiper' },
   { title: 'Message', name: '/example/message' },
-  { title: 'swiper', name: '/example/swiper' },
-
 ].sort((a, b) => a.title > b.title ? 1 : -1)
 
 const movePage = (page: string) => {
   router.push(page)
+  // test.value = page
 }
 </script>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const logo = ref<string>(`${import.meta.env.BASE_URL}/datafarm-logo.svg`)
+const logo = ref<string>(`${import.meta.env.BASE_URL}/abacus-logo.svg`)
 const drawer = ref<boolean>(false)
 
 const menus = [
