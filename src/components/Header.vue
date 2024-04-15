@@ -65,9 +65,7 @@ const closeDrawer = () => {
         alt="닫기"
       />
     </button>
-    <h1>
-      <img :src="logo" alt="로고 이미지" type="png">
-    </h1>
+    <img :src="logo" alt="로고 이미지" type="png">
     <button type="button">
       <el-badge is-dot>
         <icon
@@ -88,35 +86,24 @@ const closeDrawer = () => {
     size="100%"
   >
     <template #header="{ close }">
-      <h4 class="flex">
-        <img src="/img/icons/arrowLeft.svg" alt="메뉴창 닫기" @click="close">
-        <div class="flex justify-center">
+      <div class="flex">
+        <img class="mr-a" src="/img/icons/arrowLeft.svg" alt="메뉴창 닫기" @click="close">
+        <p class="mr-a text-lg text-black">
           데이터 시각화
-        </div>
-      </h4>
+        </p>
+      </div>
     </template>
-    <div>
-      <el-row>
-        <el-col>
-          <el-menu
-            class="el-menu-vertical"
-            size="100%"
-          >
-            <el-menu-item
-              v-for="(menu, index) in menus"
-              :key="menu.value"
-              v-model="menu.value"
-              :index="index.toString()"
-              class="menu"
-              @click="closeDrawer"
-            >
-              <span>{{ menu.label }}</span>
-              <img src="/img/icons/arrowRight_gray.svg" alt="메뉴">
-            </el-menu-item>
-          </el-menu>
-        </el-col>
-      </el-row>
-    </div>
+    <ul>
+      <li
+        v-for="(menu) in menus"
+        :key="menu.value"
+        class="flex flex-between cursor-pointer border-b p-4 hover:bg-blue-1"
+        @click="closeDrawer"
+      >
+        <span>{{ menu.label }}</span>
+        <img src="/img/icons/arrowRight_gray.svg" alt="메뉴">
+      </li>
+    </ul>
   </el-drawer>
 </template>
 
@@ -126,11 +113,5 @@ const closeDrawer = () => {
   //border-top: gray 0.25px solid;
   //border-left: gray 0.25px solid;
   //border-right: gray 0.25px solid;
-}
-
-.menu {
-  display: flex;
-  justify-content: space-between;
-  //border-bottom: gray 0.25px solid;
 }
 </style>
