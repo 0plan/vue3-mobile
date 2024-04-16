@@ -20,4 +20,7 @@ const moveRouter = () => {
   <main m-6>
     <RouterView />
   </main>
+  <footer absolute fixed bottom-0 right-0 z-11111 mb-4 mr-5>
+    <FilterButton />
+  </footer>
 </template>

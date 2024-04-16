@@ -3,7 +3,7 @@ interface IProps {
   width?: number
   height?: number
   alt: string
-  darkName: string
+  darkName?: string
   lightName: string
   type?: string
 }
