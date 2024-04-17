@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const logo = ref<string>(`${import.meta.env.BASE_URL}/abacus-logo.svg`)
 const drawer = ref<boolean>(false)
+const selectMenu = ref('all')
 
 const menus = [
   {
@@ -52,6 +53,10 @@ const openDrawer = () => {
 const closeDrawer = () => {
   drawer.value = false
 }
+const menuClick = (data: string) => {
+  selectMenu.value = data
+  closeDrawer()
+}
 </script>
 
 <template>
@@ -87,7 +92,7 @@ const closeDrawer = () => {
   >
     <template #header="{ close }">
       <div class="flex">
-        <img class="mr-a" src="/img/icons/arrowLeft.svg" alt="메뉴창 닫기" @click="close">
+        <Icon class="mr-a" light-name="arrowLeft" type="svg" alt="메뉴창 닫기" @click="close" />
         <p class="mr-a text-lg text-black">
           데이터 시각화
         </p>
@@ -97,11 +102,12 @@ const closeDrawer = () => {
       <li
         v-for="(menu) in menus"
         :key="menu.value"
-        class="flex flex-between cursor-pointer border-b p-4 hover:bg-blue-1"
-        @click="closeDrawer"
+        class="menu flex flex-between cursor-pointer border-b p-4"
+        :class="{ active: selectMenu === menu.value }"
+        @click="menuClick(menu.value)"
       >
         <span>{{ menu.label }}</span>
-        <img src="/img/icons/arrowRight_gray.svg" alt="메뉴">
+        <Icon light-name="arrowRight_gray" type="svg" alt="메뉴" />
       </li>
     </ul>
   </el-drawer>
@@ -110,8 +116,16 @@ const closeDrawer = () => {
 <style lang="scss" scoped>
 .menuList {
   display: block;
-  //border-top: gray 0.25px solid;
-  //border-left: gray 0.25px solid;
-  //border-right: gray 0.25px solid;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu.active {
+  color: #111111;
+  font-weight: bold;
+  background-color: #ffffff;
 }
 </style>
