@@ -124,7 +124,7 @@ const menuClick = (data: string) => {
 }
 
 .menu.active {
-  color: #111111;
+  color: #1a1d1d;
   font-weight: bold;
   background-color: #ffffff;
 }
