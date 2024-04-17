@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IFilterType } from '~/type'
+import type { IFilterDetailOption, IFilterType } from '~/type'
 
 const drawer = ref<boolean>(false)
 const openDrawer = () => {
@@ -7,63 +7,73 @@ const openDrawer = () => {
 }
 
 const filterList: IFilterType = {
-  dashboard: [
-    {
-      value: 'media',
-      label: '미디어',
+  dashboard: {
+    title: {
+      value: 'dashboard',
+      label: '대시보드',
     },
-    {
-      value: 'salesGroup',
-      label: '영업그룹',
+    data: [
+      {
+        value: 'media',
+        label: '미디어',
+      },
+      {
+        value: 'salesGroup',
+        label: '영업그룹',
+      },
+      {
+        value: 'marketing',
+        label: '마케팅',
+      },
+      {
+        value: 'diagnosis',
+        label: '진단',
+      },
+    ],
+  },
+  serviceType: {
+    title: {
+      value: 'serviceType',
+      label: '서비스유형',
     },
-    {
-      value: 'marketing',
-      label: '마케팅',
+    data: [
+      {
+        value: 'mobile',
+        label: '모바일',
+      },
+      {
+        value: 'home',
+        label: '홈',
+      },
+      {
+        value: 'company',
+        label: '기업',
+      },
+    ],
+  },
+  sortBy: {
+    title: {
+      value: 'sortBy',
+      label: '정렬기준',
     },
-    {
-      value: 'diagnosis',
-      label: '진단',
-    },
-  ],
-  serviceType: [
-    {
-      value: 'mobile',
-      label: '모바일',
-    },
-    {
-      value: 'home',
-      label: '홈',
-    },
-    {
-      value: 'company',
-      label: '기업',
-    },
-  ],
-  sortBy: [
-    {
-      value: 'recent',
-      label: '최신',
-    },
-    {
-      value: 'viewCount',
-      label: '조회수순',
-    },
-    {
-      value: 'recommended',
-      label: '추천순',
-    },
-  ],
+    data: [
+      {
+        value: 'recent',
+        label: '최신',
+      },
+      {
+        value: 'viewCount',
+        label: '조회수순',
+      },
+      {
+        value: 'recommended',
+        label: '추천순',
+      },
+    ],
+  },
 }
 
-const title = (data: string) => {
-  if (data === 'dashboard')
-    return '대시보드'
-  if (data === 'serviceType')
-    return '서비스유형'
-  if (data === 'sortBy')
-    return '정렬기준'
-}
-const filterOptions = reactive({
+const filterOptions: { [key: string]: string } = reactive({
   dashboard: '',
   serviceType: '',
   sortBy: '',
@@ -81,17 +91,16 @@ const reset = () => {
   filterOptions.dashboard = ''
   filterOptions.serviceType = ''
   filterOptions.sortBy = ''
-  console.log(filterOptions)
 }
 
-const handleButtonClick = (key: string, value: string) => {
-  if (key === 'dashboard')
+const handleButtonClick = (key: IFilterDetailOption, value: string) => {
+  if (key.title.value === 'dashboard')
     filterOptions.dashboard = value
 
-  if (key === 'serviceType')
+  if (key.title.value === 'serviceType')
     filterOptions.serviceType = value
 
-  if (key === 'sortBy')
+  if (key.title.value === 'sortBy')
     filterOptions.sortBy = value
 }
 </script>
@@ -101,9 +110,6 @@ const handleButtonClick = (key: string, value: string) => {
     <el-button plain @click="openDrawer">
       Drawer 오픈
     </el-button>
-    <div>대시보드 {{ filterOptions.dashboard }}</div>
-    <div>서비스유형 {{ filterOptions.serviceType }}</div>
-    <div>정렬기준 {{ filterOptions.sortBy }}</div>
     <div>
       <el-drawer
         v-model="drawer"
@@ -114,26 +120,26 @@ const handleButtonClick = (key: string, value: string) => {
       >
         <template #header="{ titleId, titleClass }">
           <h4 :id="titleId" :class="titleClass" class="flex">
-            <img src="/img/icons/menu.svg" alt="필터" class="mr-4">
+            <Icon light-name="menu" type="svg" alt="필터" class="mr-4" />
             필터
           </h4>
           <button class="flex" @click="reset">
-            <img src="/img/icons/reset.svg" alt="초기화" class="mr-2">
+            <Icon light-name="reset" type="svg" alt="초기화" class="mr-2" />
             초기화
           </button>
         </template>
         <div class="demo-drawer__content">
-          <div v-for="(key, index) in Object.keys(filterList)" :key="index" class="mb-4">
-            {{ title(key) }}
+          <div v-for="(item, index) in filterList" :key="index" class="mb-4">
+            {{ item.title.label }}
             <div class="mt-4">
               <el-button
-                v-for="filterType in filterList[key]"
+                v-for="filterType in item.data"
                 :key="filterType.value"
                 v-model="filterType.value"
                 round
                 class="button"
-                :class="{ active: filterOptions[key] === filterType.value }"
-                @click="handleButtonClick(key, filterType.value)"
+                :class="{ active: filterOptions[item.title.value] === filterType.value }"
+                @click="handleButtonClick(item, filterType.value)"
               >
                 {{ filterType.label }}
               </el-button>

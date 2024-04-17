@@ -7,8 +7,13 @@ export interface IFilterOption {
   label: string
 }
 
+export interface IFilterDetailOption {
+  title: IFilterOption
+  data: IFilterOption[]
+}
+
 export interface IFilterType {
-  dashboard: IFilterOption[]
-  serviceType: IFilterOption[]
-  sortBy: IFilterOption[]
+  dashboard: IFilterDetailOption
+  serviceType: IFilterDetailOption
+  sortBy: IFilterDetailOption
 }
