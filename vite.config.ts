@@ -37,13 +37,11 @@ export default defineConfig({
     strictPort: true, // If the port is occupied, exit directly
     /* 모바일 화면 확인용 스트립트입니다. */
     proxy: {
-      '/api/v1': {
+      '/app/api': {
         target: '',
         changeOrigin: true,
-        // path rewrite가 필요할 경우 사용
-        // rewrite: (path) => path.replace(/^\/api/, ''),
       },
-      '/app/api': {
+      '/app/aqua': {
         target: '',
         changeOrigin: true,
       },
