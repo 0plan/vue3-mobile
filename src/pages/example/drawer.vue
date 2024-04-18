@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IFilterDetailOption, IFilterType } from '~/type'
+import type { IFilterDetailOption, IFilterType } from '~/type/common/DrawerFilter'
 
 const drawer = ref<boolean>(false)
 const openDrawer = () => {
