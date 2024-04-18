@@ -13,3 +13,7 @@ export interface IFilterType {
   serviceType: IFilterDetailOption
   sortBy: IFilterDetailOption
 }
+
+export interface INoticeTitle {
+  title: string
+}
