@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IFilterDetailOption, IFilterType } from '~/type/common/DrawerFilter'
+import type { IFilterDetailOption, IFilterType, INoticeTitle } from '~/type/common/DrawerFilter'
 
 const drawer = ref<boolean>(false)
 const openDrawer = () => {
@@ -87,31 +87,6 @@ const summitBtn = () => {
   drawer.value = false
 }
 
-const notice = ref<boolean>(false)
-const openNotice = () => {
-  notice.value = true
-}
-
-const noticeTitle = {
-  title: '데이터팜 서버작업 공지',
-}
-
-const noticeShow = ref(false)
-
-const noMoreShow = (e: any) => {
-  if (e.isTrusted)
-    noticeShow.value = true
-}
-
-const closeNotice = () => {
-  notice.value = false
-}
-
-const moveNotice = () => {
-  if (noticeShow.value)
-    notice.value = false
-}
-
 const reset = () => {
   filterOptions.dashboard = ''
   filterOptions.serviceType = ''
@@ -128,6 +103,34 @@ const handleButtonClick = (key: IFilterDetailOption, value: string) => {
   if (key.title.value === 'sortBy')
     filterOptions.sortBy = value
 }
+
+const noticeTitle: INoticeTitle = reactive({
+  title: '',
+})
+
+const notice = ref<boolean>(false)
+const noticeMode = ref<boolean>(false)
+
+const noMoreShow = (e: React.BaseSyntheticEvent<HTMLInputElement>) => {
+  if (e.target.checked)
+    noticeMode.value = true
+}
+
+const openNotice = () => {
+  notice.value = true
+}
+
+const closeNotice = () => {
+  notice.value = false
+}
+
+const moveNotice = () => {
+  notice.value = false
+}
+
+onMounted(() => {
+  noticeTitle.title = '데이터팜 서버작업 공지'
+})
 </script>
 
 <template>
@@ -145,6 +148,7 @@ const handleButtonClick = (key: IFilterDetailOption, value: string) => {
         :close-on-click-modal="false"
         size="60%"
         :show-close="false"
+        :z-index="999"
       >
         <template #header="{ titleId, titleClass }">
           <h4 :id="titleId" :class="titleClass" class="flex">
@@ -195,6 +199,7 @@ const handleButtonClick = (key: IFilterDetailOption, value: string) => {
         :close-on-click-modal="false"
         size="35%"
         :show-close="false"
+        :z-index="999"
       >
         <template #header>
           <p class="flex items-center justify-center text-xl font-bold">
