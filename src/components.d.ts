@@ -22,8 +22,10 @@ declare module 'vue' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     FilterButton: typeof import('./components/FilterButton.vue')['default']
+    FilterDrawer: typeof import('./components/FilterDrawer.vue')['default']
     Header: typeof import('./components/Header.vue')['default']
     Icon: typeof import('./components/Icon.vue')['default']
+    ItemListView: typeof import('./components/ItemListView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

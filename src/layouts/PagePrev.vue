@@ -3,13 +3,16 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode } from 'swiper/modules'
 import type { Swiper as SwiperClass } from 'swiper/types'
 import { menus } from '~/components/menuBar'
+import FilterDrawer from '~/components/FilterDrawer.vue'
 
+const emit = defineEmits(['filterOptions'])
 const router = useRouter()
 const route = useRoute()
 
 const modules = [FreeMode]
 const target = ref<string>(route.query.target as string ?? 'all')
 const title = ref<string>(route.meta.title as string)
+const drawer = ref<boolean>(false)
 
 const moveRouter = () => {
   router.back()
@@ -21,6 +24,30 @@ const initSlideTo = (swiper: SwiperClass) => {
   const targetIndex: number = menus.findIndex(item => item.value === target.value)
   swiper.slideTo(targetIndex, 500)
 }
+
+const openDrawer = (data: boolean) => {
+  drawer.value = data
+}
+
+const closeDrawer = () => {
+  drawer.value = false
+}
+
+const filter: { [key: string]: string } = reactive({
+  dashboard: '',
+  serviceType: '',
+  sortBy: '',
+})
+
+const filterOptions = (data: { [key: string]: string }) => {
+  filter.dashboard = data.dashboard
+  filter.serviceType = data.serviceType
+  filter.sortBy = data.sortBy
+}
+
+onMounted(() => {
+  drawer.value = false
+})
 </script>
 
 <template>
@@ -47,10 +74,19 @@ const initSlideTo = (swiper: SwiperClass) => {
     </Swiper>
   </div>
   <main m-6>
-    <RouterView />
+    <RouterView
+      :target="target"
+    />
   </main>
   <footer absolute fixed bottom-0 right-0 z-11111 mb-4 mr-5>
-    <FilterButton />
+    <FilterButton
+      @open-drawer="openDrawer"
+    />
+    <FilterDrawer
+      :open-drawer="drawer"
+      @close-drawer="closeDrawer"
+      @filter-option="filterOptions"
+    />
   </footer>
 </template>
 

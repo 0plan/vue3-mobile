@@ -1,6 +1,12 @@
 <script setup lang="ts">
+const emit = defineEmits(['openDrawer'])
+
 const moveTop = () => {
   document.getElementsByTagName('main')[0].scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+const openFilter = () => {
+  emit('openDrawer', true)
 }
 </script>
 
@@ -14,7 +20,7 @@ const moveTop = () => {
         alt="화살표"
       />
     </button>
-    <button class="h-14 w-14 flex flex-col items-center justify-center rounded-full bg-[#EB008B]">
+    <button class="h-14 w-14 flex flex-col items-center justify-center rounded-full bg-[#EB008B]" @click="openFilter">
       <icon
         light-name="filter"
         :width="28"
