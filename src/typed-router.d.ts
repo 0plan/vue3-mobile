@@ -47,6 +47,7 @@ declare module 'vue-router/auto/routes' {
     '/example/network': RouteRecordInfo<'/example/network', '/example/network', Record<never, never>, Record<never, never>>,
     '/example/swiper': RouteRecordInfo<'/example/swiper', '/example/swiper', Record<never, never>, Record<never, never>>,
     '/home/': RouteRecordInfo<'/home/', '/home', Record<never, never>, Record<never, never>>,
+    '/visualization/': RouteRecordInfo<'/visualization/', '/visualization', Record<never, never>, Record<never, never>>,
   }
 }
 

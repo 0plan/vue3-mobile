@@ -2,10 +2,10 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode } from 'swiper/modules'
 import Header from '~/components/Header.vue'
-import { menu } from '~/components/menuBar'
+import { menus } from '~/components/menuBar'
 
 const modules = [FreeMode]
-const target = ref<string>('전체')
+const target = ref<string>('all')
 const clickSlide = (value: string) => {
   target.value = value
 }
@@ -17,12 +17,12 @@ const clickSlide = (value: string) => {
     <Swiper
       slides-per-view="auto" :free-mode="true" :modules="modules" class="h-12 border-1 border-y-black/30 text-center text-base text-[#47484A] leading-12"
     >
-      <SwiperSlide v-for="m in menu" :key="`menu-swiper-${m.name}`" class="w-20" :class="{ active: target === m.name }" @click="clickSlide(m.name)">
+      <SwiperSlide v-for="m in menus" :key="`menu-swiper-${m.value}`" class="w-20" :class="{ active: target === m.value }" @click="clickSlide(m.value)">
         <div
           class="w-18 cursor-pointer"
-          :class="{ 'underline underline-offset-[13px]': target === m.name }"
+          :class="{ 'underline underline-offset-[13px]': target === m.value }"
         >
-          <span>{{ m.name }}</span>
+          <span>{{ m.label }}</span>
         </div>
       </SwiperSlide>
     </Swiper>
