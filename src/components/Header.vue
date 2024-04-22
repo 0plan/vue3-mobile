@@ -1,51 +1,10 @@
 <script setup lang="ts">
+import { menus } from '~/components/menuBar'
+
+const router = useRouter()
 const logo = ref<string>(`${import.meta.env.BASE_URL}/abacus-logo.svg`)
 const drawer = ref<boolean>(false)
-const selectMenu = ref('all')
-
-const menus = [
-  {
-    value: 'all',
-    label: '전체',
-  },
-  {
-    value: 'join',
-    label: '가입',
-  },
-  {
-    value: 'combination',
-    label: '결합',
-  },
-  {
-    value: 'serviceUse',
-    label: '서비스 이용',
-  },
-  {
-    value: 'currentSituation',
-    label: '현황',
-  },
-  {
-    value: 'beforeChange',
-    label: '변경 전',
-  },
-  {
-    value: 'termination',
-    label: '해지',
-  },
-  {
-    value: 'benefits',
-    label: '혜택',
-  },
-  {
-    value: 'voc',
-    label: 'VOC',
-  },
-  {
-    value: 'etc',
-    label: '기타',
-  },
-
-]
+const selectMenu = ref<string>('all')
 
 const openDrawer = () => {
   drawer.value = true
@@ -56,6 +15,7 @@ const closeDrawer = () => {
 const menuClick = (data: string) => {
   selectMenu.value = data
   closeDrawer()
+  router.push({ name: '/visualization/', query: { target: data } })
 }
 </script>
 
@@ -92,7 +52,7 @@ const menuClick = (data: string) => {
   >
     <template #header="{ close }">
       <div class="flex">
-        <Icon class="mr-a" light-name="arrowLeft" type="svg" alt="메뉴창 닫기" @click="close" />
+        <Icon class="mr-a" light-name="arrow_left" type="svg" alt="메뉴창 닫기" @click="close" />
         <p class="mr-a text-lg text-black">
           데이터 시각화
         </p>
@@ -107,7 +67,7 @@ const menuClick = (data: string) => {
         @click="menuClick(menu.value)"
       >
         <span>{{ menu.label }}</span>
-        <Icon light-name="arrowRight_gray" type="svg" alt="메뉴" />
+        <Icon light-name="arrow_right_gray" type="svg" alt="메뉴" />
       </li>
     </ul>
   </el-drawer>

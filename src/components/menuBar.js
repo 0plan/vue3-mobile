@@ -1,32 +1,42 @@
-export const menu = [
+export const menus = [
   {
-    name: '전체',
+    value: 'all',
+    label: '전체',
   },
   {
-    name: '가입',
+    value: 'join',
+    label: '가입',
   },
   {
-    name: '결합',
+    value: 'combination',
+    label: '결합',
   },
   {
-    name: '서비스이용',
+    value: 'serviceUse',
+    label: '서비스이용',
   },
   {
-    name: '현황',
+    value: 'currentSituation',
+    label: '현황',
   },
   {
-    name: '변경 전',
+    value: 'beforeChange',
+    label: '변경 전',
   },
   {
-    name: '해지',
+    value: 'termination',
+    label: '해지',
   },
   {
-    name: '혜택',
+    value: 'benefits',
+    label: '혜택',
   },
   {
-    name: 'VOC',
+    value: 'voc',
+    label: 'VOC',
   },
   {
-    name: '기타',
+    value: 'etc',
+    label: '기타',
   },
 ]

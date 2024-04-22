@@ -26,6 +26,6 @@ import { Pagination } from 'swiper/modules'
 
 <route lang="yaml">
 meta:
-  layout: PageClose
+  layout: PagePrev
   title: Swiper
 </route>
