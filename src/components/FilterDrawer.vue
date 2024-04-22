@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { IFilterDetailOption, IFilterType, INoticeTitle } from '~/type/common/DrawerFilter'
+import type { IFilterDetailOption, IFilterType } from '~/type/common/DrawerFilter'
 
-const drawer = ref<boolean>(false)
+const props = defineProps(['openDrawer'])
+const emit = defineEmits(['closeDrawer', 'filterOption'])
 const { height } = useWindowSize()
-const openDrawer = () => {
-  drawer.value = true
-}
+
+const openDrawer = ref<boolean>(false)
 
 const filterList: IFilterType = {
   dashboard: {
@@ -81,11 +81,12 @@ const filterOptions: { [key: string]: string } = reactive({
 })
 
 const closeBtn = () => {
-  drawer.value = false
+  emit('closeDrawer', openDrawer.value = false)
 }
 
 const summitBtn = () => {
-  drawer.value = false
+  emit('filterOption', filterOptions)
+  emit('closeDrawer', openDrawer.value = false)
 }
 
 const reset = () => {
@@ -105,50 +106,24 @@ const handleButtonClick = (key: IFilterDetailOption, value: string) => {
     filterOptions.sortBy = value
 }
 
-const noticeTitle: INoticeTitle = reactive({
-  title: '',
-})
-
-const notice = ref<boolean>(false)
-const noticeMode = ref<boolean>(false)
-
-const noMoreShow = (e: React.BaseSyntheticEvent<HTMLInputElement>) => {
-  if (e.target.checked)
-    noticeMode.value = true
-}
-
-const openNotice = () => {
-  notice.value = true
-}
-
-const closeNotice = () => {
-  notice.value = false
-}
-
-const moveNotice = () => {
-  notice.value = false
-}
-
 const drawerSize = computed(() => {
   return height.value <= 360
 })
 
-onMounted(() => {
-  noticeTitle.title = '데이터팜 서버작업 공지'
-})
+watch(
+  props,
+  (newValue) => {
+    if (newValue.openDrawer)
+      openDrawer.value = true
+  },
+)
 </script>
 
 <template>
   <div class="px-20px pt-104px">
-    <el-button plain @click="openDrawer">
-      Drawer 오픈
-    </el-button>
-    <el-button plain @click="openNotice">
-      공지사항 오픈
-    </el-button>
     <div>
       <el-drawer
-        v-model="drawer"
+        v-model="openDrawer"
         direction="btt"
         :close-on-click-modal="false"
         :size="drawerSize ? '100%' : '60%'"
@@ -197,44 +172,6 @@ onMounted(() => {
         </template>
       </el-drawer>
     </div>
-    <div>
-      <el-drawer
-        v-model="notice"
-        direction="btt"
-        :close-on-click-modal="false"
-        :size="drawerSize ? '70%' : '35%'"
-        :show-close="false"
-        :z-index="999"
-      >
-        <template #header>
-          <p class="flex items-center justify-center text-xl font-bold">
-            {{ noticeTitle.title }}
-          </p>
-        </template>
-        <template #default>
-          <div class="demo-drawer__content flex items-center justify-center">
-            <div class="mb-4">
-              공지사항을 보러 가시겠습니까?
-            </div>
-            <div class="round mt-15">
-              <input id="checkbox" type="checkbox" class="mr-3" @click="noMoreShow">
-              <label for="checkbox" />
-              다시 보지 않기
-            </div>
-          </div>
-        </template>
-        <template #footer>
-          <div class="demo-drawer__footer flex">
-            <button class="h-12 w-48 border-1 border-[#aeaeb2] rounded-md bg-[#ffffff] text-[#1a1d1d]" @click="closeNotice">
-              닫기
-            </button>
-            <button class="ml-4 h-12 w-48 rounded-md bg-[#eb008b] text-[#ffffff]" @click="moveNotice">
-              확인
-            </button>
-          </div>
-        </template>
-      </el-drawer>
-    </div>
   </div>
 </template>
 
@@ -250,54 +187,7 @@ onMounted(() => {
   display: flex;
   justify-content: center;
 }
-
-// ================== 둥근 체크박스 ================== //
-.round {
-  position: absolute;
-}
-
-.round label {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.round label:after {
-  border: 2px solid #eb008b;
-  border-top: none;
-  border-right: none;
-  content: '';
-  height: 6px;
-  width: 12px;
-  top: 25%;
-  left: 15%;
-  opacity: 0;
-  position: absolute;
-  transform: rotate(-45deg);
-}
-
-.round input[type='checkbox'] {
-  visibility: hidden;
-}
-
-.round input[type='checkbox']:checked + label {
-  background-color: white;
-  border-color: #eb008b;
-}
-
-.round input[type='checkbox']:checked + label:after {
-  opacity: 1;
-}
 </style>
 
 <route lang="yaml">
-meta:
-  layout: PageClose
-  title: Drawer
 </route>
