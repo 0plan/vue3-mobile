@@ -21,7 +21,7 @@ export const menus = [
   },
   {
     value: 'beforeChange',
-    label: '변경 전',
+    label: '변경전',
   },
   {
     value: 'termination',

@@ -6,6 +6,7 @@ export interface ICategoryOption {
 export interface ICategoryItemOption {
   title: ICategoryOption
   data: ICategoryOption[]
+  totalCount: number
 }
 
 export interface ICategoryList {
@@ -13,4 +14,14 @@ export interface ICategoryList {
   combination: ICategoryItemOption
   serviceUse: ICategoryItemOption
   currentSituation: ICategoryItemOption
+  beforeChange: ICategoryItemOption
+  termination: ICategoryItemOption
+  benefits: ICategoryItemOption
+  voc: ICategoryItemOption
+  etc: ICategoryItemOption
+}
+
+export interface ICategoryTotalList {
+  categoryTotal: number
+  data: ICategoryList[]
 }

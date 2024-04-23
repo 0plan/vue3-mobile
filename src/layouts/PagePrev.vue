@@ -59,9 +59,9 @@ onMounted(() => {
       {{ title }}
     </p>
   </header>
-  <div>
+  <div sticky top-0 z-1>
     <Swiper
-      slides-per-view="auto" :free-mode="true" :modules="modules" class="h-12 border-1 border-y-black/30 text-center text-base text-[#47484A] leading-12" @init="initSlideTo"
+      slides-per-view="auto" :free-mode="true" :modules="modules" class="h-12 border-1 border-y-black/30 bg-white text-center text-base text-[#47484A] leading-12" @init="initSlideTo"
     >
       <SwiperSlide v-for="m in menus" :key="`menu-swiper-${m.value}`" class="w-20" :class="{ 'text-[#eb008b]': target === m.value }" @click="clickSlide(m.value)">
         <div
@@ -78,16 +78,16 @@ onMounted(() => {
       :target="target"
     />
   </main>
-  <footer absolute fixed bottom-0 right-0 z-11111 mb-4 mr-5>
+  <footer absolute fixed bottom-0 right-0 z-999 mb-4 mr-5>
     <FilterButton
       @open-drawer="openDrawer"
     />
-    <FilterDrawer
-      :open-drawer="drawer"
-      @close-drawer="closeDrawer"
-      @filter-option="filterOptions"
-    />
   </footer>
+  <FilterDrawer
+    :open-drawer="drawer"
+    @close-drawer="closeDrawer"
+    @filter-option="filterOptions"
+  />
 </template>
 
 <style lang="scss">
