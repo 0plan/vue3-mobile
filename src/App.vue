@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'LG U+ Mobile 데이터팜',
+  title: 'Vue3 Mobile',
   meta: [
     {
       name: 'description',

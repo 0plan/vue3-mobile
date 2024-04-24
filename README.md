@@ -1,4 +1,4 @@
-# Vue3 Mobile 데이터팜
+# Vue3 Mobile
 
 - Typescript, Vue3, Vitejs 기반 개발을 위해 사용을 위한 주요 가이드 모음
 - [vitesse](https://github.com/antfu/vitesse)를 기반으로 구성됨
