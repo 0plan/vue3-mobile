@@ -130,8 +130,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Mobile 데이터팜',
-        short_name: 'M-데이터팜',
+        name: 'Vue3 Mobile',
+        short_name: 'Vue3 M',
         theme_color: '#ffffff',
         icons: [
           {

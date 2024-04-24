@@ -2,7 +2,7 @@
 import { menus } from '~/components/menuBar'
 
 const router = useRouter()
-const logo = ref<string>(`${import.meta.env.BASE_URL}abacus-logo.svg`)
+const logo = ref<string>(`${import.meta.env.BASE_URL}favicon.svg`)
 const drawer = ref<boolean>(false)
 const selectMenu = ref<string>('all')
 
