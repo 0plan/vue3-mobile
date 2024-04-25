@@ -24,6 +24,9 @@ export default defineConfig({
       '~/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
+  build: {
+    outDir: 'dist/app',
+  },
   /**
    * 빌드 시 해당 내용은 빌드에서 제외 됩니다.
    * 로컬 환경에서 개발 진행 시, 사용하는 접속 정보 입니다.
