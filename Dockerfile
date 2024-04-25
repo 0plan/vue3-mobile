@@ -19,7 +19,7 @@ RUN pnpm build
 FROM nginx:stable-alpine as production-stage
 
 # 빌드된 정적 파일을 Nginx 웹 루트로 복사
-COPY --from=build-stage /app/dist /usr/share/nginx/html/app
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Nginx 포트 80 노출
