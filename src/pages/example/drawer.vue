@@ -130,7 +130,7 @@ const moveNotice = () => {
 }
 
 const drawerSize = computed(() => {
-  return height.value <= 360
+  return height.value <= 400
 })
 
 onMounted(() => {
