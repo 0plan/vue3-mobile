@@ -107,7 +107,7 @@ const handleButtonClick = (key: IFilterDetailOption, value: string) => {
 }
 
 const drawerSize = computed(() => {
-  return height.value <= 360
+  return height.value <= 400
 })
 
 watch(
